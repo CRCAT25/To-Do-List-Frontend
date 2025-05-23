@@ -5,10 +5,28 @@ import RegisterView from '../views/RegisterView.vue'
 import TaskView from '../views/TaskView.vue'
 
 const routes = [
-  { path: '/', redirect: '/tasks' },
-  { path: '/login', component: LoginView },
-  { path: '/register', component: RegisterView },
-  { path: '/tasks', component: TaskView }
+  {
+    path: '/',
+    redirect: '/tasks'
+  },
+  {
+    path: '/login',
+    name: 'LoginView',
+    component: LoginView,
+    props: false
+  },
+  {
+    path: '/register',
+    name: 'RegisterView',
+    component: RegisterView,
+    props: false
+  },
+  {
+    path: '/tasks',
+    name: 'TaskView',
+    component: TaskView,
+    props: false
+  }
 ]
 
 const router = createRouter({
