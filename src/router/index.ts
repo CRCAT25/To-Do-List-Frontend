@@ -1,8 +1,8 @@
 // router/index.js
 import { createRouter, createWebHistory } from 'vue-router'
 import LoginView from '../views/LoginView.vue'
-import RegisterView from '../views/RegisterView.vue'
 import TaskView from '../views/TaskView.vue'
+import UserView from '@/views/UserView.vue'
 
 const routes = [
   {
@@ -16,9 +16,9 @@ const routes = [
     props: false
   },
   {
-    path: '/register',
-    name: 'RegisterView',
-    component: RegisterView,
+    path: '/userView',
+    name: 'UserView',
+    component: UserView,
     props: false
   },
   {

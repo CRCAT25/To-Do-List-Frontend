@@ -13,7 +13,5 @@ import Login from '../components/Login.vue'
     max-width: 400px;
     margin: 2rem auto;
     padding: 2rem;
-    border: 1px solid #ccc;
-    border-radius: 8px;
 }
 </style>
