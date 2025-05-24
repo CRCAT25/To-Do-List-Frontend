@@ -3,7 +3,6 @@ export interface TaskDTO {
   title: string;
   userId: number;
   username: string;
-  status: number;
-  statusName: string;
+  status: string;
   deadline: string; // hoặc Date nếu bạn parse thành đối tượng Date
 }

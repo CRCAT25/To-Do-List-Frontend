@@ -33,7 +33,7 @@ export const useTaskStore = defineStore('task', {
     },
 
     async updateTask(task: TaskDTO) {
-      const res = (await api.put<ResponseDTO<TaskDTO>>(`${taskUrl}/${task.id}`, task)).data;
+      const res = (await api.put<ResponseDTO<TaskDTO>>(`${taskUrl}`, task)).data;
       const index = this.tasks.findIndex(t => t.id === task.id);
       if (index !== -1) this.tasks[index] = res.data;
     },

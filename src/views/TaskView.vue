@@ -1,10 +1,21 @@
 <template>
     <div class="task-view">
-        <h1>Quản lý Công việc</h1>
+        <h1>🗂️ Quản lý Công việc</h1>
 
-        <TaskForm v-if="showForm" :task="editingTask" @submit="onSubmitTask" @cancel="cancelEdit" />
+        <div class="top-actions">
+            <button v-if="!showForm" class="btn-add" @click="showForm = true">
+                ➕ Thêm công việc
+            </button>
+            <button v-else class="btn-cancel" @click="cancelEdit">
+                ❌ Hủy
+            </button>
+        </div>
 
-        <button v-else @click="showForm = true">+ Thêm công việc</button>
+        <transition name="fade">
+            <TaskForm v-if="showForm" :task="editingTask" @submit="onSubmitTask" @cancel="cancelEdit" />
+        </transition>
+
+        <hr />
 
         <TaskList :tasks="tasks" @edit="onEditTask" @delete="deleteTask" />
     </div>
@@ -13,18 +24,23 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { useTaskStore } from '@/store/taskStore'
+import { useUserStore } from '@/store/userStore'
 import TaskList from '@/components/TaskList.vue'
 import TaskForm from '@/components/TaskForm.vue'
 import type { TaskDTO } from '@/dto/TaskDTO'
 
 const taskStore = useTaskStore()
+const userStore = useUserStore()
 const tasks = ref<TaskDTO[]>([])
 const showForm = ref(false)
 const editingTask = ref<TaskDTO | undefined>()
 
 onMounted(async () => {
-    await taskStore.fetchTasks()
-    tasks.value = taskStore.tasks
+  await Promise.all([
+    taskStore.fetchTasks(),
+    userStore.fetchUsers()
+  ])
+  tasks.value = taskStore.tasks
 })
 
 const onEditTask = (task: TaskDTO) => {
@@ -59,8 +75,57 @@ const deleteTask = async (id: number) => {
 
 <style scoped>
 .task-view {
-    max-width: 700px;
+    max-width: 800px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 24px;
+    background-color: #fefefe;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 26px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.top-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+}
+
+.btn-add,
+.btn-cancel {
+    padding: 8px 14px;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-add {
+    background-color: #2ecc71;
+    color: white;
+}
+
+.btn-cancel {
+    background-color: #e74c3c;
+    color: white;
+}
+
+hr {
+    margin: 20px 0;
+    border: 1px solid #ddd;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+    opacity: 0;
 }
 </style>
