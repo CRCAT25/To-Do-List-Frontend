@@ -1,11 +1,11 @@
 <template>
     <div class="login-view">
-        <Login />
+        <router-view />
     </div>
 </template>
 
-<script lang="ts" setup>
-import Login from '../components/Login.vue'
+<script setup lang="ts">
+// không cần import gì, vì <router-view /> sẽ tự render theo route con
 </script>
 
 <style scoped>

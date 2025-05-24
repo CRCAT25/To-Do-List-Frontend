@@ -1,13 +1,13 @@
 <template>
     <div class="task-view">
-        <h1>🗂️ Quản lý Công việc</h1>
+        <h1>🗂️ TO DO LIST BY DO QUOC THANH</h1>
 
         <div class="top-actions">
             <button v-if="!showForm" class="btn-add" @click="showForm = true">
-                ➕ Thêm công việc
+                ➕ Add a new task
             </button>
             <button v-else class="btn-cancel" @click="cancelEdit">
-                ❌ Hủy
+                ❌ Close
             </button>
         </div>
 

@@ -3,6 +3,8 @@ import { createRouter, createWebHistory } from 'vue-router'
 import LoginView from '../views/LoginView.vue'
 import TaskView from '../views/TaskView.vue'
 import UserView from '@/views/UserView.vue'
+import Login from '@/components/Login.vue'
+import Register from '@/components/Register.vue'
 
 const routes = [
   {
@@ -10,10 +12,18 @@ const routes = [
     redirect: '/tasks'
   },
   {
-    path: '/login',
-    name: 'LoginView',
+    path: '/auth',
     component: LoginView,
-    props: false
+    children: [
+      {
+        path: 'login',
+        component: Login
+      },
+      {
+        path: 'register',
+        component: Register
+      }
+    ]
   },
   {
     path: '/userView',
