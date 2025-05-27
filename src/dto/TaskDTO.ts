@@ -5,4 +5,5 @@ export interface TaskDTO {
   username: string;
   status: string;
   deadline: string;
+  fullName: string;
 }

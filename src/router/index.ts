@@ -36,6 +36,11 @@ const routes = [
     name: 'TaskView',
     component: TaskView,
     props: false
+  },
+  // Catch-all route for 404s
+  {
+    path: '/:pathMatch(.*)*',
+    redirect: '/tasks'
   }
 ]
 

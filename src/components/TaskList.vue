@@ -11,7 +11,7 @@
                 </div>
 
                 <div class="task-meta">
-                    👤 <span class="username">{{ task.username }}</span>
+                    👤 <span class="fullname">{{ task.fullName }}</span>
                     <br />
                     📅 Deadline: <span class="deadline">{{ formatDate(task.deadline) }}</span>
                 </div>

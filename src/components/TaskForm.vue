@@ -59,7 +59,8 @@ const form = reactive<TaskDTO>({
     userId: 2,
     username: '',
     status: 'PENDING',
-    deadline: ''
+    deadline: '',
+    fullName: '',
 })
 
 watch(
